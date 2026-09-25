@@ -102,18 +102,18 @@ def api_docs():
         "service": "Free Fire Wishlist Leaderboard API",
         "version": "3.2",
         "endpoints": {
-            "/leaderboard": {
+            "/token": {
                 "description": "Fetch wishlist leaderboard data (weekly/monthly) with item info.",
                 "parameters": {
                     "region": "Region code (default: IND). Available: IND, BD, PK, SG, ID, ME, VN, TH, TW, EUROPE, RU, BR, US, NA, SAC",
                     "type": "Data filter: all (default), weekly, monthly"
                 },
-                "example": "/leaderboard?region=IND&type=weekly"
+                "example": "/token?uid={uid}&password={encoded_password}"
             }
         }
     }), 200
 
-@app.route('/leaderboard', methods=['GET'])
+@app.route('/token', methods=['GET'])
 def leaderboard():
     region = request.args.get('region', 'IND').upper()
     if region not in REGION_BASE_URLS:
